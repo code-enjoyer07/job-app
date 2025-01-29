@@ -17,6 +17,7 @@ return new class extends Migration
             $table->bigInteger('capacity')->nullable()->default(1);
             $table->bigInteger('apply_capacity')->nullable()->default(1);
 
+            $table->timestamps();
             $table->foreign('job_vacancy_id')->references('id')->on('job_vacancies')->onDelete('cascade');
         });
 

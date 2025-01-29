@@ -21,6 +21,7 @@ return new class extends Migration
             $table->text('reason_accepted')->nullable();
             $table->text('validator_notes')->nullable();
 
+            $table->timestamps();
             $table->foreign('job_category_id')->references('id')->on('job_categories')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('validator_id')->references('id')->on('validators')->onDelete('set null');

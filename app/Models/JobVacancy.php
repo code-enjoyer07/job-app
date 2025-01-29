@@ -9,16 +9,12 @@ class JobVacancy extends Model
 {
     use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
         'job_category_id',
         'company',
         'address',
         'description',
+        'position_id',
     ];
 
     /**
@@ -28,4 +24,13 @@ class JobVacancy extends Model
     {
         return $this->belongsTo(JobCategory::class, 'job_category_id');
     }
+
+    /**
+     * Get the position associated with the job vacancy.
+     */
+    public function position()
+    {
+        return $this->belongsTo(Position::class, 'position_id');
+    }
 }
+

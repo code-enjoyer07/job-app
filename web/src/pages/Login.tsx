@@ -3,6 +3,7 @@ import axios from "axios";
 import Navbar from "../components/Navbar";
 import { z, ZodError } from "zod";
 import { useNavigate } from "react-router-dom";
+import { ENV } from "../env";
 
 const loginSchema = z.object({
     username: z.string().min(3, "Username harus memiliki minimal 3 karakter"),
@@ -41,8 +42,12 @@ export default function Login() {
                     }
                 })
                 localStorage.setItem('username', username.data.username)
-                if(username.status == 200) {
-                    navigate('/dashboard')
+                if (username.status == 200) {
+                    if (username.data.role == "admin") {
+                        window.location.href = '/dashboard'
+                    } else {
+                        window.location.href = '/dashboard/user'
+                    }
                 }
             }
         } catch (error) {
@@ -65,9 +70,23 @@ export default function Login() {
     };
 
     useEffect(() => {
-        if (localStorage.getItem('token')) {
-            navigate('/dashboard')
+        const loading = async () => {
+            if (localStorage.getItem('token')) {
+                const username = await axios({
+                    method: "GET",
+                    url: `${import.meta.env.VITE_API_URL}/auth/users`,
+                    headers: {
+                        Authorization: `Bearer ${ENV.TOKEN}`
+                    }
+                })
+                if (username.data.role == 'admin') {
+                    navigate('/dashboard')
+                } else {
+                    navigate('/dashboard/user')
+                }
+            }
         }
+        loading()
     }, [])
 
     return (

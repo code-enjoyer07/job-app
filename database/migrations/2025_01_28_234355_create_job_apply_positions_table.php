@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('position_id')->nullable();
             $table->enum('status', ['pending', 'approved', 'rejected']);
 
+            $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('job_vacancy_id')->references('id')->on('job_vacancies')->onDelete('set null');
             $table->foreign('position_id')->references('id')->on('available_positions')->onDelete('set null');

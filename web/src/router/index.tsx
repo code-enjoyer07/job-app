@@ -4,6 +4,7 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Logout from "../pages/Logout";
 import Dashboard from "../pages/Dashboard";
+import UserDashboard from "../pages/UserDashboard";
 
 export default function Router() {
     return (
@@ -14,6 +15,7 @@ export default function Router() {
                 <Route path="/register" element={<Register />} />
                 <Route path="/logout" element={<Logout />} />
                 <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/dashboard/user" element={<UserDashboard />} />
             </Routes>
         </BrowserRouter>
     )

@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('province', 255);
             $table->string('district', 255);
+
+            $table->timestamps();
         });
 
         Schema::enableForeignKeyConstraints();
