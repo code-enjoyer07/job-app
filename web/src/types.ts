@@ -1,5 +1,5 @@
 export interface JobVacancy {
-    id: number;
+    id: string;
     company: string;
     address: string;
     description: string;
@@ -10,16 +10,16 @@ export interface JobVacancy {
 }
 
 export interface JobCategory {
-    id: number;
+    id: string;
     job_category: string;
 }
 
 export interface Category {
-    id: number;
+    id: string;
     job_category: string;
 }
 
 export interface Position {
-    id: number;
+    id: string;
     position_name: string;
 }
